@@ -33,20 +33,20 @@
 
       <section class="panel">
         <h2>Search & Filter</h2>
-        <form id="filterForm" class="filter-grid">
+        <form id="filterForm" class="filter-grid" autocomplete="off">
           <label>
             CVE ID
-            <input id="cveIdInput" name="cveId" placeholder="CVE-2024-12345" />
+            <input id="cveIdInput" name="cveId" placeholder="CVE-2024-12345" autocomplete="off" />
           </label>
 
           <label>
             Year
-            <input id="yearInput" name="year" type="number" min="1999" max="2100" placeholder="2024" />
+            <input id="yearInput" name="year" type="number" min="1999" max="2100" placeholder="2024" autocomplete="off" />
           </label>
 
           <label>
             Exact CVSS Score
-            <input id="scoreInput" name="score" type="number" min="0" max="10" step="0.1" placeholder="7.5" />
+            <input id="scoreInput" name="score" type="number" min="0" max="10" step="0.1" placeholder="7.5" autocomplete="off" />
           </label>
 
           <label>
@@ -59,6 +59,7 @@
               max="10"
               step="0.1"
               placeholder="5"
+              autocomplete="off"
             />
           </label>
 
@@ -72,6 +73,7 @@
               max="10"
               step="0.1"
               placeholder="9.8"
+              autocomplete="off"
             />
           </label>
 
@@ -84,6 +86,7 @@
               min="1"
               max="3650"
               placeholder="30"
+              autocomplete="off"
             />
           </label>
 
