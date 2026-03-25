@@ -1,0 +1,28 @@
+{
+  "name": "securin_api_practice",
+  "version": "1.0.0",
+  "description": "CVE ingestion, sync, and visualization platform using NVD CVE API v2",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "sync:once": "node src/scripts/syncOnce.js",
+    "sync:full": "node src/scripts/fullSync.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^12.8.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "node-cron": "^4.2.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "supertest": "^7.2.2",
+    "vitest": "^4.1.0"
+  }
+}

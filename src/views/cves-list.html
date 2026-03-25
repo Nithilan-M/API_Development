@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CVE List | NVD Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <script src="/assets/js/cves-list.js" defer></script>
+  </head>
+  <body class="page-list">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <main class="shell">
+      <header class="hero">
+        <p class="kicker">API_Development</p>
+        <h1>CVE Intelligence Console</h1>
+        <p>
+          Indexed from NVD CVE API v2 with data cleansing, de-duplication, periodic sync, and
+          server-side filtering.
+        </p>
+        <div class="hero-actions">
+          <button id="runSyncBtn" class="btn btn-primary">Run Incremental Sync</button>
+          <span id="syncStatePill" class="pill">Sync status: checking...</span>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>Search & Filter</h2>
+        <form id="filterForm" class="filter-grid">
+          <label>
+            CVE ID
+            <input id="cveIdInput" name="cveId" placeholder="CVE-2024-12345" />
+          </label>
+
+          <label>
+            Year
+            <input id="yearInput" name="year" type="number" min="1999" max="2100" placeholder="2024" />
+          </label>
+
+          <label>
+            Exact CVSS Score
+            <input id="scoreInput" name="score" type="number" min="0" max="10" step="0.1" placeholder="7.5" />
+          </label>
+
+          <label>
+            CVSS Min
+            <input
+              id="scoreMinInput"
+              name="scoreMin"
+              type="number"
+              min="0"
+              max="10"
+              step="0.1"
+              placeholder="5"
+            />
+          </label>
+
+          <label>
+            CVSS Max
+            <input
+              id="scoreMaxInput"
+              name="scoreMax"
+              type="number"
+              min="0"
+              max="10"
+              step="0.1"
+              placeholder="9.8"
+            />
+          </label>
+
+          <label>
+            Last Modified In N Days
+            <input
+              id="modifiedDaysInput"
+              name="modifiedWithinDays"
+              type="number"
+              min="1"
+              max="3650"
+              placeholder="30"
+            />
+          </label>
+
+          <div class="filter-actions">
+            <button type="submit" class="btn btn-primary">Apply Filters</button>
+            <button type="button" id="resetBtn" class="btn btn-subtle">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="table-toolbar">
+          <div>
+            <h2>CVE LIST</h2>
+            <p class="meta-line">
+              Total Records:
+              <strong id="totalRecords">0</strong>
+            </p>
+          </div>
+
+          <div class="toolbar-controls">
+            <label>
+              Sort Date Field
+              <select id="sortBySelect">
+                <option value="lastModified">Last Modified</option>
+                <option value="published">Published</option>
+              </select>
+            </label>
+
+            <label>
+              Sort Direction
+              <select id="sortOrderSelect">
+                <option value="desc">Newest First</option>
+                <option value="asc">Oldest First</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>CVE ID</th>
+                <th>Identifier</th>
+                <th>Published Date</th>
+                <th>Last Modified Date</th>
+                <th>Score</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="cveTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="footer-bar">
+          <label class="results-per-page">
+            Results Per Page
+            <select id="limitSelect">
+              <option value="10" selected>10</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </label>
+
+          <div class="pagination">
+            <button id="prevPageBtn" class="btn btn-subtle">Previous</button>
+            <span id="pageInfo">Page 1 of 1</span>
+            <button id="nextPageBtn" class="btn btn-subtle">Next</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: securin-api-practice
+    env: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    disk:
+      name: securin-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_PATH
+        value: /var/data/cve.db
+      - key: NVD_API_BASE
+        value: https://services.nvd.nist.gov/rest/json/cves/2.0
+      - key: NVD_API_KEY
+        sync: false
+      - key: NVD_RESULTS_PER_PAGE
+        value: "2000"
+      - key: NVD_REQUEST_DELAY_MS
+        value: "6500"
+      - key: NVD_SYNC_MAX_PAGES
+        value: "0"
+      - key: INCREMENTAL_LOOKBACK_DAYS
+        value: "7"
+      - key: SYNC_CRON
+        value: 0 */6 * * *
+      - key: BOOTSTRAP_SYNC_ON_START
+        value: "true"
